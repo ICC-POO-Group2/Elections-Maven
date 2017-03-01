@@ -13,67 +13,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 public class ElectionsDaoFile implements IElectionsDao {
-	@Autowired
-	@Qualifier("daoFile")
+	/**
+	 * le nom du fichier qui contient les données nécessaires au calcul des sièges
+	 * 
+	 */
 	private String inFileName = null;
-	private String outFileName = null;
-	private String logFileName = null;
-	private double seuilElectoral;
-	private int nbSiegesAPourvoir;
-	private ListeElectorale[] listesElectorales =  null;
 	
-	// Cosntructeurs
-	public ElectionsDaoFile(String inFileName, String outFileName, String logFileName) throws ElectionsException, IOException{
+	/**
+	* le nom du fichier qui contiendra les résultats
+	*/
+	String outFileName = null;
+	
+	/**
+	* le nom du fichier de logs
+	*/
+	private String logFileName = null;
+	
+	/**
+	* le seuil électoral
+	*/
+	private double seuilElectoral;
+	
+	
+	 /**
+	 * le nombre de sièges à pourvoir
+	 */
+	private int nbSiegesAPourvoir;
+	
+	
+	/**
+	* les listes en compétition
+	*/
+	private ListeElectorale[] listesElectorales = null;
+	
+	/**
+	 * constructeur avec paramètres
+	 * @param inFileFileName String : le nom du fichier qui contient les données nécessaires au calcul des sièges
+	 * @param outFileName String : le nom du fichier qui contiendra les résultats
+	 * @param logFileName String : le nom du fichier qui contiendra les messages d'erreurs éventuels
+	 * @throws ElectionsException si problème quelconque
+	 *
+	 */
+	public ElectionsDaoFile(String inFileName, String outFileName, String logFileName) {
 		this.inFileName = inFileName;
 		this.outFileName = outFileName;
 		this.logFileName = logFileName;
-		File f = new File(inFileName);
-		BufferedReader  bR =null;
-		StringBuilder sB= new StringBuilder();
-		if(!f.exists()){
-			throw new IOException("Le fichier n'existe pas");
-		}else{
-			try {
-				bR = new BufferedReader(
-						new FileReader(f));
-				try{
-					
-				}
-				finally{
-					bR.close();
-				}
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			}
 		
-		
-		
+		//TODO Initialiser seuilElectoral, nbSiegesAPourvoir et les listesElectorales
+		//		Lire le fichier infileName
 		
 	}
-	private int setNbSiegesAPourvoir(int nbSAPourvoir) {
-		int sap = 0;	
-		try{
-					sap= nbSAPourvoir;
-				}catch(InputMismatchException e){
-					System.out.println("Erreur: Le chiffres des sieges à pourvoir doit etre strictement positif");
-					System.exit(1);
-				}
-			
-		
-		return sap;
-	}
-	private double setSeuilElectoral(int seuil) {
-		
-		return 0;
-	}
-	// Getters et Setters
+
 	public double getSeuilElectoral() {
 		return seuilElectoral;
 	}
 
-	
 	public int getNbSiegesAPourvoir() {
 		return nbSiegesAPourvoir;
 	}
@@ -83,8 +77,20 @@ public class ElectionsDaoFile implements IElectionsDao {
 	}
 
 	public void setListesElectorales(ListeElectorale[] listesElectorales) {
-		
- 
+		// TODO Ecrire dans outFileName le résultat des élections
+
+	}
+
+	public String getInFileName() {
+		return inFileName;
+	}
+
+	public String getOutFileName() {
+		return outFileName;
+	}
+
+	public String getLogFileName() {
+		return logFileName;
 	}
 
 }
