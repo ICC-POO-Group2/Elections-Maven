@@ -50,17 +50,51 @@ public class ElectionsDaoFile implements IElectionsDao {
 	 * constructeur avec paramètres
 	 * @param inFileFileName String : le nom du fichier qui contient les données nécessaires au calcul des sièges
 	 * @param outFileName String : le nom du fichier qui contiendra les résultats
-	 * @param logFileName String : le nom du fichier qui contiendra les messages d'erreurs éventuels
+	 * @param logFileName String : le nom du fichier qui contiendra les messages d'erreurs éventuels 
 	 * @throws ElectionsException si problème quelconque
 	 *
 	 */
-	public ElectionsDaoFile(String inFileName, String outFileName, String logFileName) {
+	public ElectionsDaoFile(String inFileName, String outFileName, String logFileName) throws ElectionsException {
 		this.inFileName = inFileName;
 		this.outFileName = outFileName;
 		this.logFileName = logFileName;
+		BufferedReader bR = null;
 		
 		//TODO Initialiser seuilElectoral, nbSiegesAPourvoir et les listesElectorales
 		//		Lire le fichier infileName
+		File f = new File(inFileName);
+		if(!f.exists()){
+			throw new ElectionsException("Le fichier n'existe pas !");
+		}else{
+			try {
+				bR= new BufferedReader(
+						new FileReader(
+								new File(inFileName)));
+				try{
+					String texte;
+					nbSiegesAPourvoir= ((texte=bR.readLine())!=null)?Integer.parseInt(texte):0;
+					seuilElectoral= ((texte=bR.readLine())!=null)?Double.parseDouble(texte):0;
+					listesElectorales[7] = new ListeElectorale();
+					int i=0;
+					while((texte = bR.readLine()) !=null){
+						listesElectorales[i].setId(i);
+						listesElectorales[i].setNom(texte);
+						listesElectorales[i].setElimine(false);
+						i++;
+					}
+					
+				}
+				finally{
+					bR.close();
+				}
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 	}
 
