@@ -1,11 +1,14 @@
 package spring.core.dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 import spring.core.dao.entities.*;
 
@@ -112,6 +115,26 @@ public class ElectionsDaoFile implements IElectionsDao {
 
 	public void setListesElectorales(ListeElectorale[] listesElectorales) {
 		// TODO Ecrire dans outFileName le résultat des élections
+		File f = new File(outFileName);
+		BufferedWriter bW = null;
+		
+		if(!f.exists()){
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			bW= new BufferedWriter(new FileWriter(f));
+			for(int i =0; i<listesElectorales.length; i++){
+				bW.write(listesElectorales[i].getNom());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
