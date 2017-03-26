@@ -7,4 +7,6 @@ public interface IElectionsDao {
 	public int getNbSiegesAPourvoir();
 	public ListeElectorale[] getListesElectorales();
 	public void setListesElectorales(ListeElectorale[] listesElectorales);
+	public String getInFileName();
+	public String getOutFileName();
 }

@@ -25,7 +25,7 @@ public class ElectionsDaoFile implements IElectionsDao {
 	/**
 	* le nom du fichier qui contiendra les résultats
 	*/
-	String outFileName = null;
+	private String outFileName = null;
 	
 	/**
 	* le nom du fichier de logs
@@ -93,7 +93,7 @@ public class ElectionsDaoFile implements IElectionsDao {
 				
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				MyUtilities.saveStringToFile("Erreur lors de la lecture dans le fichier !", logFileName);
 				e.printStackTrace();
 			}
 		}

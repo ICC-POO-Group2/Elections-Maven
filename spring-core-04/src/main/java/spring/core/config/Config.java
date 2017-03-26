@@ -1,9 +1,11 @@
 package spring.core.config;
 
- import org.springframework.context.annotation.Bean;
- import org.springframework.context.annotation.Configuration;
 
- import spring.core.dao.Dao1;
+
+ import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import spring.core.dao.Dao1;
  import spring.core.dao.Dao2;
  import spring.core.dao.IDao;
  import spring.core.metier.IMetier;
@@ -12,7 +14,8 @@ package spring.core.config;
  import spring.core.ui.IUi;
  import spring.core.ui.Ui1;
  import spring.core.ui.Ui2;
-
+/**
+ * Classe de configuration**/
  @Configuration
  public class Config {
 
