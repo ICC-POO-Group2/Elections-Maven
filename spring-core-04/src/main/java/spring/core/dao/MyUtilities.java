@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
 public class MyUtilities {
 	private static BufferedWriter bW =null;
@@ -40,25 +44,8 @@ public class MyUtilities {
 			}
 		
 		return sauve;
-		
-		/**
-		try {
-			if(csv!=null && !f.exists()){
-				fW = new BufferedWriter(new FileWriter(new File(path)));
-				fW.write(csv,0,csv.length());
-				fW.close();
-				return true;
-			}	
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		return false;
-	**/
 	}
 	public static String getStringFromFile(String pathFile) throws IOException {
-		
 		StringBuilder sB = new StringBuilder();
 		File f= new File(pathFile);
 		if(!f.exists()){
@@ -88,26 +75,7 @@ public class MyUtilities {
 			
 		}
 		return sB.toString();
-		/**
-		String result="";
-		String tmp="";
-		try {
-			fR = new BufferedReader(new FileReader(new File(path)));
-			while(tmp!=null){
-				tmp=fR.readLine();
-				if(tmp!=null){
-				result=result+tmp+"\n";
-				}
-				
-			}
-			fR.close();
-			System.out.println(result);
-			return result;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		**/
 	}
 	
+
 }
